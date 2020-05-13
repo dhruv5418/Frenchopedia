@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "423318393611",
+    "firebase_url": "https://frenchopedia-70435.firebaseio.com",
+    "project_id": "frenchopedia-70435",
+    "storage_bucket": "frenchopedia-70435.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423318393611:android:06c0dddd562288f48f880e",
+        "android_client_info": {
+          "package_name": "com.example.frenchopedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423318393611-1nr9280lu2625et6d5dt1hgm02m0lv02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIXIAV50m_VokpRCryOg5hZlw1wjKlxXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423318393611-1nr9280lu2625et6d5dt1hgm02m0lv02.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

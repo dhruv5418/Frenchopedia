@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Firstfragment">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="103dp"
+        android:src="@drawable/logo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="247dp"
+        android:text="@string/logo_text"
+        android:textColor="@color/logo_text"
+        android:textSize="25dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="293dp"
+        android:text="Learn french on the go."
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btn_getStarted"
+        android:layout_width="250dp"
+        android:layout_height="46dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="248dp"
+        android:background="@drawable/btn_style"
+        android:text="GET STARTED"
+        android:textColor="@color/White"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btn_firstLogin"
+        android:layout_width="250dp"
+        android:layout_height="46dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="173dp"
+        android:background="@drawable/btn_style1"
+        android:text="LOGIN"
+        android:textColor="@color/orenge_button"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/img_faceBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="33dp"
+        android:src="@drawable/facebook" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="616dp"
+        android:background="@color/DarkGray" />
+
+    <ImageView
+        android:id="@+id/img_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="270dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="33dp"
+        app:srcCompat="@drawable/ggl" />
+
+</RelativeLayout>

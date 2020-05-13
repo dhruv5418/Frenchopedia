@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navifation_start"
+    app:startDestination="@id/firstfragment">
+
+    <fragment
+        android:id="@+id/loginfragment"
+        android:name="com.example.frenchopedia.loginfragment"
+        android:label="fragment_loginfragment"
+        tools:layout="@layout/fragment_loginfragment" />
+    <fragment
+        android:id="@+id/registrationfragment"
+        android:name="com.example.frenchopedia.registrationfragment"
+        android:label="fragment_registrationfragment"
+        tools:layout="@layout/fragment_registrationfragment" />
+    <fragment
+        android:id="@+id/emailverifyfragment"
+        android:name="com.example.frenchopedia.emailverifyfragment"
+        android:label="fragment_emailverifyfragment"
+        tools:layout="@layout/fragment_emailverifyfragment" />
+    <fragment
+        android:id="@+id/firstfragment"
+        android:name="com.example.frenchopedia.Firstfragment"
+        android:label="fragment_firstfragment"
+        tools:layout="@layout/fragment_firstfragment" />
+    <fragment
+        android:id="@+id/selectlevelFragment"
+        android:name="com.example.frenchopedia.SelectlevelFragment"
+        android:label="fragment_selectlevel"
+        tools:layout="@layout/fragment_selectlevel" />
+</navigation>

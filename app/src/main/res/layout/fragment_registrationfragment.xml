@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".registrationfragment"
+    android:background="#F39532">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="71dp"
+        android:src="@drawable/logo" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="450dp"
+        android:layout_marginTop="250dp"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/reg_fname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="30dp"
+                android:hint="Enter first name"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/reg_lname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="5dp"
+                android:hint="Enter last name"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/reg_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginEnd="5dp"
+                android:hint="Enter e-mail address"
+                android:inputType="textEmailAddress"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+
+            <EditText
+                android:id="@+id/reg_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginEnd="5dp"
+                android:hint="Enter password"
+                android:inputType="textPassword"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/reg_cPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="190dp"
+                android:layout_marginEnd="5dp"
+                android:hint="Re-Enter password"
+                android:inputType="textPassword"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btn_registration"
+                android:layout_width="250dp"
+                android:layout_height="46dp"
+                android:textColor="@color/White"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="42dp"
+                android:layout_marginBottom="152dp"
+                android:background="@drawable/btn_style"
+                android:text="REGISTER"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/txt_regLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="127dp"
+                android:layout_marginBottom="107dp"
+                android:text="Old User?"
+                android:textColor="@color/orenge_button"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/img_faceBook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="77dp"
+                android:layout_marginBottom="33dp"
+                android:src="@drawable/facebook" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="347dp"
+                android:layout_marginEnd="172dp"
+                android:background="@color/DarkGray" />
+
+            <ImageView
+                android:id="@+id/img_google"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="216dp"
+                android:layout_marginEnd="84dp"
+                android:layout_marginBottom="31dp"
+                app:srcCompat="@drawable/ggl"/>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</RelativeLayout>

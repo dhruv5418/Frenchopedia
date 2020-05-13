@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Frenchopedia</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register"><u><b>Register</b></u></string>
+    <string name="login"><u><b>Login</b></u></string>
+    <string name="logo_text"><i><b>Frenchopedia</b></i></string>
+    <string name="menu_label_1">Home</string>
+    <string name="menu_label_2">Extra</string>
+    <string name="menu_label_3">Course</string>
+    <string name="menu_label_4">Profile</string>
+</resources>
