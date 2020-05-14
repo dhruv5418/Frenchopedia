@@ -9,4 +9,7 @@
     <string name="menu_label_2">Extra</string>
     <string name="menu_label_3">Course</string>
     <string name="menu_label_4">Profile</string>
+    <string name="lvl_1">Beginner</string>
+    <string name="lvl_2">Intermediate</string>
+    <string name="lvl_3">Expert</string>
 </resources>

@@ -1,10 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SelectlevelFragment">
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="102dp"
+        android:layout_marginEnd="145dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="268dp"
+        android:text="Wait for a moment,Before starting select level for french practice and quizes."
+        android:textAlignment="center"
+        android:textSize="20sp" />
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectLevel"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="60dp"
+        >
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lvl_1"
+            android:text="@string/lvl_1"
+            android:checked="true"
+            android:textSize="25sp" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lvl_2"
+            android:text="@string/lvl_2"
+            android:textSize="25sp" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lvl_3"
+            android:text="@string/lvl_3"
+            android:textSize="25sp" />
+    </RadioGroup>
+    <Button
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_lvl"
+        android:background="@drawable/btn_style"
+        android:layout_below="@+id/selectLevel"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:text="NEXT"
+        android:textSize="20sp"
+        android:layout_marginTop="40dp"
+        />
 
 
 </RelativeLayout>
