@@ -172,6 +172,8 @@ public class registrationfragment extends Fragment implements View.OnClickListen
                     usermap.put("First Name",fName);
                     usermap.put("Last Name",lName);
                     usermap.put("Email",email);
+                    int a=0;
+                    usermap.put("Level",a);
                     db.collection("Users").document(user.getUid()).set(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

@@ -1,5 +1,6 @@
 package com.example.frenchopedia;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -59,6 +60,12 @@ public class SelectlevelFragment extends Fragment {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        auth.signOut();
+    }
+
+    @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         btn_next=view.findViewById(R.id.btn_lvl);
@@ -83,9 +90,12 @@ public class SelectlevelFragment extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getActivity().getApplicationContext(),"Level selected successfully",Toast.LENGTH_LONG);
-                            navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                            Intent intent = new Intent(getActivity(), Dashboard.class);
+                            intent.putExtra("User",curUser);
+                            startActivity(intent);
+                           /* navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
                             auth.signOut();
-                            navController.navigate(R.id.loginfragment);
+                            navController.navigate(R.id.loginfragment);*/
                         }else{
                             Log.d("Select Level Fragment","onFailure: Level Selection"+task.getException().getMessage());
                         }

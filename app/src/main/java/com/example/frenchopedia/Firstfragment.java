@@ -56,4 +56,10 @@ public class Firstfragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
 }
