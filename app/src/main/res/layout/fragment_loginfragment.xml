@@ -65,6 +65,18 @@
                 android:text="Login"
                 android:textSize="20dp" />
 
+
+            <TextView
+                android:id="@+id/txt_frgtPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="47dp"
+                android:layout_marginBottom="130dp"
+                android:text="Forgot Password?"
+                android:textColor="@color/orenge_button" />
+
             <TextView
                 android:id="@+id/txt_loginRegister"
                 android:layout_width="wrap_content"
@@ -72,8 +84,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginEnd="127dp"
-                android:layout_marginBottom="107dp"
+                android:layout_marginEnd="126dp"
+                android:layout_marginBottom="95dp"
                 android:text="@string/register"
                 android:textColor="@color/orenge_button"
                 android:textSize="25sp" />
@@ -85,18 +97,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="77dp"
-                android:layout_marginBottom="33dp"
+                android:layout_marginBottom="22dp"
                 android:src="@drawable/facebook" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="80dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="347dp"
-                android:layout_marginEnd="172dp"
-                android:background="@color/DarkGray" />
 
             <ImageView
                 android:id="@+id/img_google"
@@ -106,8 +108,18 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="216dp"
                 android:layout_marginEnd="84dp"
-                android:layout_marginBottom="31dp"
-                app:srcCompat="@drawable/ggl"/>
+                android:layout_marginBottom="20dp"
+                app:srcCompat="@drawable/ggl" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="358dp"
+                android:layout_marginEnd="172dp"
+                android:background="@color/DarkGray" />
 
 
         </RelativeLayout>

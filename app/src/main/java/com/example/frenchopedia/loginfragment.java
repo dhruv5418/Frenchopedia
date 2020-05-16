@@ -68,10 +68,12 @@ public class loginfragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         Button btn_login = view.findViewById(R.id.btn_login);
         TextView txt_reg = view.findViewById(R.id.txt_loginRegister);
+        TextView txt_frgtPass=view.findViewById(R.id.txt_frgtPass);
         edt_email=view.findViewById(R.id.edit_loginEmail);
         edt_pass=view.findViewById(R.id.edit_loginPass);
         txt_reg.setOnClickListener(this);
         btn_login.setOnClickListener(this);
+        txt_frgtPass.setOnClickListener(this);
     }
 
     @Override
@@ -93,6 +95,9 @@ public class loginfragment extends Fragment implements View.OnClickListener {
         }else if(id==R.id.txt_loginRegister) {
             navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
             navController.navigate(R.id.registrationfragment);
+        }else if(id==R.id.txt_frgtPass){
+            navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+            navController.navigate(R.id.emailverifyfragment);
         }
     }
 
