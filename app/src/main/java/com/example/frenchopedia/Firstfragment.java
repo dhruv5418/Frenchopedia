@@ -13,11 +13,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.facebook.login.LoginFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class Firstfragment extends Fragment {
     NavController navController;
     Button btn_getStarted,btn_login;
+    FirebaseAuth auth;
+    FirebaseUser curUser;
     public Firstfragment() {
         // Required empty public constructor
     }
@@ -29,6 +36,7 @@ public class Firstfragment extends Fragment {
     {
         super.onCreate(savedInstanceState);
         navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+        auth=FirebaseAuth.getInstance();
     }
 
     @Override
@@ -60,6 +68,21 @@ public class Firstfragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        curUser=auth.getCurrentUser();
+        if(curUser!=null){
+            updateUI(curUser);
+            Toast.makeText(getActivity().getApplicationContext(),"User Already Login",Toast.LENGTH_LONG).show();
+        }
+    }
 
+    public void updateUI(FirebaseUser fUser){
+        //NavController nv=Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+        // navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+        Intent intent = new Intent(getActivity(), Dashboard.class);
+        intent.putExtra("User",fUser);
+        startActivity(intent);
+       /* Bundle bundle=new Bundle();
+        bundle.putParcelable("User",fUser);
+        //navController.navigate(R.id.dashboardfragment,bundle);*/
     }
 }

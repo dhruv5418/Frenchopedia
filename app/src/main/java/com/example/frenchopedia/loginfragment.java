@@ -39,7 +39,7 @@ import java.util.Map;
 public class loginfragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth auth;
     private FirebaseUser curUser;
-    private NavController navController;
+    public NavController navController;
     private EditText edt_email,edt_pass;
     private FirebaseFirestore db;
     private int a;
@@ -168,8 +168,9 @@ public class loginfragment extends Fragment implements View.OnClickListener {
         });
     }
 
-    private void updateUI(FirebaseUser fUser){
-        navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+    public void updateUI(FirebaseUser fUser){
+        //NavController nv=Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+       // navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
         Intent intent = new Intent(getActivity(), Dashboard.class);
         intent.putExtra("User",fUser);
         startActivity(intent);

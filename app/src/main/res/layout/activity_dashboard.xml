@@ -14,24 +14,25 @@
             android:background="@color/White"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             />
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_dashboard"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph='@navigation/navigation_dashboard'
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/bottom_navigation"/>
 
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="249dp"
-        android:text="logout" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:labelVisibilityMode="labeled"
-        app:itemIconTint="@color/DarkGray"
-        app:itemTextColor="@color/DarkGray"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_navigation_menu"/>
 
