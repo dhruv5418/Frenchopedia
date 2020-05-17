@@ -7,13 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard">
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:id="@+id/toolbar"
-            android:background="@color/White"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            />
+
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,7 +15,6 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
         app:navGraph='@navigation/navigation_dashboard'
-        android:layout_below="@+id/toolbar"
         android:layout_above="@+id/bottom_navigation"/>
 
 
