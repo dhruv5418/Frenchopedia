@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TranslationActivity"
+    android:id="@+id/translatorView">
+    <include
+        layout="@layout/tool_dash"
+        android:id="@+id/tool_trans" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="324dp"
+        app:cardCornerRadius="10dp">
+
+        <EditText
+            android:id="@+id/textToTranslate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:hint="Enter text (English)"
+            android:gravity="center"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btn_swap"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="115dp"
+            android:background="@drawable/ic_swap_vert_black_24dp" />
+
+        <EditText
+            android:id="@+id/translatedText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:gravity="center"
+            android:hint="Translated Text (French)"
+            android:focusable="false"/>
+
+        <Button
+            android:id="@+id/btn_translate"
+            android:layout_width="250dp"
+            android:layout_height="46dp"
+            android:background="@drawable/btn_style"
+            android:text="Translate"
+            android:textSize="20sp"
+            android:textColor="@color/White"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="265dp"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

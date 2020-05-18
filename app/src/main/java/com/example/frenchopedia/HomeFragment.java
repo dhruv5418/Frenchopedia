@@ -13,6 +13,7 @@ import androidx.navigation.NavController;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -57,6 +58,7 @@ public class HomeFragment extends Fragment {
         Button b=view.findViewById(R.id.logout);
         toolbar=view.findViewById(R.id.toolbar_home);
         toolbar.inflateMenu(R.menu.tool_home);
+        toolbar.setOnMenuItemClickListener(toolListner);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadData(data , "text/html" , null);
 
@@ -69,4 +71,21 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+    private Toolbar.OnMenuItemClickListener toolListner=new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            switch (item.getItemId()){
+                case(R.id.translator):  Intent intent= new Intent(getActivity(),TranslationActivity.class);
+                                        startActivity(intent);
+                                        break;
+                case(R.id.noteBook):  Intent intent1= new Intent(getActivity(),TranslationActivity.class);
+                                        startActivity(intent1);
+                                        break;
+
+            }
+            return true;
+        }
+    };
+
 }

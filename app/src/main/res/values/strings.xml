@@ -12,4 +12,5 @@
     <string name="lvl_1">Beginner</string>
     <string name="lvl_2">Intermediate</string>
     <string name="lvl_3">Expert</string>
+    <string name="no_connection">No internet connection! Cannot be translated!</string>
 </resources>
