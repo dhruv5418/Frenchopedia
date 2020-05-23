@@ -15,9 +15,11 @@
         android:elevation="4dp"
         app:title="Profile"
         app:titleTextColor="@color/orenge_button"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+    <include
+        layout="@layout/profile_image"
+        android:layout_centerHorizontal="true"
+        android:layout_width="116dp"
+        android:layout_height="116dp"
+        android:id="@+id/image_p1"
+        android:layout_marginTop="125dp"/>
 </RelativeLayout>

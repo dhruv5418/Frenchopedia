@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="116dp"
+        android:layout_height="116dp"
+        android:id="@+id/image_profile"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/orenge_button"
+        android:src="@drawable/com_facebook_profile_picture_blank_square"/>

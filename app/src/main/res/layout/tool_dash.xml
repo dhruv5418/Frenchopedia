@@ -6,4 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/White"
-        app:navigationIcon="@drawable/ic_arrow_back_black_24dp" />
+    app:navigationIcon="@drawable/ic_arrow_back_black_24dp">
+
+
+
+</androidx.appcompat.widget.Toolbar>
