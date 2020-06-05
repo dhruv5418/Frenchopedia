@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.solver.widgets.Snapshot;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -106,7 +107,6 @@ public class loginfragment extends Fragment implements View.OnClickListener {
         docref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-
                 if(documentSnapshot.exists()){
                     documentSnapshot.getData();
                     a=(int)(long)documentSnapshot.get("Level");
@@ -133,7 +133,7 @@ public class loginfragment extends Fragment implements View.OnClickListener {
                     readData(new FirestoreCallback() {
                         @Override
                         public void onClickback(DocumentSnapshot documentSnapshot) {
-                          //  Log.d("loginuser1=","a="+map);
+                            //  Log.d("loginuser1=","a="+map);
                             Log.d("loginuser2=","a="+a);
                             if(a>0&&a<4){
                                 Toast.makeText(getActivity().getApplicationContext(),"Login Success!",Toast.LENGTH_LONG).show();

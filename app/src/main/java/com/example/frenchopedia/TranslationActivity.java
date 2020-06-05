@@ -68,7 +68,7 @@ public class TranslationActivity extends AppCompatActivity implements View.OnCli
                         swap();
                 break;
             case R.id.btn_translate:
-                    //translate();
+                  //  translate();
                 break;
         }
     }
@@ -87,7 +87,7 @@ public class TranslationActivity extends AppCompatActivity implements View.OnCli
         Toast.makeText(getApplicationContext(),"Language swapped successfully",Toast.LENGTH_LONG).show();
     }
 
-/*    public void translate(){
+   /* public void translate(){
         if (checkInternetConnection()) {
 
             //If there is internet connection, get translate service and start translation:
