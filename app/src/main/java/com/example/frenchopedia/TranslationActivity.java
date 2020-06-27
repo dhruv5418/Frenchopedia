@@ -17,10 +17,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
-/*import com.google.auth.oauth2.GoogleCredentials;
+import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
-import com.google.cloud.translate.Translation;*/
+import com.google.cloud.translate.Translation;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,7 +33,7 @@ public class TranslationActivity extends AppCompatActivity implements View.OnCli
     String translatedText;
     String language="fr";
     private boolean connected;
-   // Translate translate;
+   Translate translate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +53,7 @@ public class TranslationActivity extends AppCompatActivity implements View.OnCli
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Dashboard.class);
                 startActivity(intent);
-                /*NavController navController= Navigation.findNavController(Dashboard.this,R.id.nav_dashboard);
+               /* NavController navController= Navigation.findNavController(Dashboard.this,R.id.nav_dashboard);
                 navController.navigate(R.id.homeFragment);*/
             }
         });
@@ -68,7 +68,7 @@ public class TranslationActivity extends AppCompatActivity implements View.OnCli
                         swap();
                 break;
             case R.id.btn_translate:
-                  //  translate();
+                    translate();
                 break;
         }
     }
@@ -87,7 +87,7 @@ public class TranslationActivity extends AppCompatActivity implements View.OnCli
         Toast.makeText(getApplicationContext(),"Language swapped successfully",Toast.LENGTH_LONG).show();
     }
 
-   /* public void translate(){
+   public void translate(){
         if (checkInternetConnection()) {
 
             //If there is internet connection, get translate service and start translation:
@@ -149,5 +149,5 @@ public class TranslationActivity extends AppCompatActivity implements View.OnCli
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
 
         return connected;
-    }*/
+    }
 }
