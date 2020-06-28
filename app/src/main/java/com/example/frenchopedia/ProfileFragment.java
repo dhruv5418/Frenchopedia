@@ -1,12 +1,9 @@
 package com.example.frenchopedia;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -18,9 +15,9 @@ import androidx.fragment.app.Fragment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -34,7 +31,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -48,6 +44,7 @@ FirebaseAuth auth;
 FirebaseUser curUser;
 Toolbar toolbar;
 CircleImageView imageView;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -59,7 +56,6 @@ CircleImageView imageView;
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         auth=FirebaseAuth.getInstance();
-
     }
 
     @Override
@@ -74,18 +70,23 @@ CircleImageView imageView;
         super.onViewCreated(view, savedInstanceState);
         toolbar=view.findViewById(R.id.toolbar_profile);
         toolbar.inflateMenu(R.menu.tool_profile);
+        toolbar.setOnMenuItemClickListener(toolListener);
         imageView=view.findViewById(R.id.image_p1);
         imageView.setOnClickListener(changeProfile);
-        curUser=auth.getCurrentUser();
-        if(curUser!=null){
-            if(curUser.getPhotoUrl()!= null){
-                Glide.with(getActivity().getApplicationContext())
-                        .load(curUser.getPhotoUrl())
-                        .into(imageView);
-            }
-        }
+
     }
 
+    private Toolbar.OnMenuItemClickListener toolListener =new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            switch (item.getItemId()){
+                case(R.id.settings):Intent intent= new Intent(getActivity(),SettingsActivity.class);
+                                    startActivity(intent);
+                                    break;
+            }
+            return true;
+        }
+    };
 
     CircleImageView.OnClickListener changeProfile=new View.OnClickListener() {
         @Override
@@ -110,6 +111,19 @@ CircleImageView imageView;
             builder.show();
         }
     };
+
+    @Override
+    public void onResume() {
+        curUser=auth.getCurrentUser();
+        if(curUser!=null){
+            if(curUser.getPhotoUrl()!= null){
+                Glide.with(getActivity().getApplicationContext())
+                        .load(curUser.getPhotoUrl())
+                        .into(imageView);
+            }
+        }
+        super.onResume();
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
