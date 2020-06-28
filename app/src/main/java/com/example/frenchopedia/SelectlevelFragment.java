@@ -86,22 +86,22 @@ public class SelectlevelFragment extends Fragment {
                 }
                 usermap.put("Level",set);
                 db.collection("Users").document(curUser.getUid()).update(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity().getApplicationContext(),"Level selected successfully",Toast.LENGTH_LONG);
-                            Intent intent = new Intent(getActivity(), Dashboard.class);
-                            intent.putExtra("User",curUser);
-                            startActivity(intent);
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(getActivity().getApplicationContext(),"Level selected successfully",Toast.LENGTH_LONG);
+                    Intent intent = new Intent(getActivity(), Dashboard.class);
+                    intent.putExtra("User",curUser);
+                    startActivity(intent);
                            /* navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
                             auth.signOut();
                             navController.navigate(R.id.loginfragment);*/
-                        }else{
-                            Log.d("Select Level Fragment","onFailure: Level Selection"+task.getException().getMessage());
-                        }
-                    }
-                });
+                }else{
+                    Log.d("Select Level Fragment","onFailure: Level Selection"+task.getException().getMessage());
+                }
             }
         });
+    }
+});
     }
 }

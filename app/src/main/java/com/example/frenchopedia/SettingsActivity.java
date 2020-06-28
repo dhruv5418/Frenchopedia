@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -31,6 +32,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,11 +71,11 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     CircleImageView imageView;
     EditText edt_fName,edt_lName;
     Toolbar toolbar;
-    Button btn_updateEmail,btn_signOut,btn_resetPass,btn_feedBack;
+    Button btn_updateEmail,btn_signOut,btn_resetPass,btn_feedBack,btn_updateLevel;
     private FirebaseFirestore db;
     TextView txt_level,txt_email;
     NavController navController;
-    String fName,lName,nEmail;
+    String fName,lName,nEmail,email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +103,10 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         btn_updateEmail=findViewById(R.id.update_email);
         btn_signOut=findViewById(R.id.btn_logOut);
         btn_resetPass=findViewById(R.id.btn_resetPass);
+        btn_feedBack=findViewById(R.id.btn_feedBack);
+        btn_updateLevel=findViewById(R.id.update_level);
+        btn_updateLevel.setOnClickListener(this);
+        btn_feedBack.setOnClickListener(this);
         btn_updateEmail.setOnClickListener(this);
         btn_signOut.setOnClickListener(this);
         btn_resetPass.setOnClickListener(this);
@@ -121,11 +128,15 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                edt_fName.setText((CharSequence) documentSnapshot.get("First Name"));
                edt_lName.setText((CharSequence) documentSnapshot.get("Last Name"));
                txt_email.setText((CharSequence) documentSnapshot.get("Email"));
+               email=txt_email.getText().toString();
              int a=(int)(long) documentSnapshot.get("Level");
                switch (a){
                    case 1: txt_level.setText("Level:- "+getString(R.string.lvl_1));
+                            break;
                    case 2: txt_level.setText("Level:- "+getString(R.string.lvl_2));
+                            break;
                    case 3: txt_level.setText("Level:- "+getString(R.string.lvl_3));
+                            break;
                }
            }
        });
@@ -150,17 +161,92 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         Intent intent;
         switch (v.getId()){
             case R.id.update_email: updateEmail(v);
-                    break;
+                                     break;
             case R.id.btn_logOut: auth.signOut();
                                       intent = new Intent(getApplicationContext(), MainActivity.class);
                                      startActivity(intent);
                                      break;
-
-            /*case R.id.btn_resetPass:  intent = new Intent(getApplicationContext(), emailverifyfragment.class);
-                                     startActivity(intent);
-                                     break;*/
+            case R.id.btn_resetPass: reset(email);
+                                     break;
+            case R.id.btn_feedBack: sendFeedback();
+                                     break;
+            case R.id.update_level: updateLevel(v);
+                                     break;
         }
+    }
 
+    private void updateLevel(View v) {
+        final View popupview=getLayoutInflater().inflate(R.layout.popupview1,null);
+        final PopupWindow popupWindow=new PopupWindow(popupview, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
+        if(Build.VERSION.SDK_INT>=21){
+            popupWindow.setElevation(5.0f);
+        }
+        final Button btn_next;
+        final RadioGroup selectLvl;
+        //final RadioButton radio_button;
+
+        //Log.d("Setting","email="+nEmail);
+         btn_next=popupview.findViewById(R.id.btn_lvl);
+        selectLvl=popupview.findViewById(R.id.selectLevel);
+        popupWindow.setFocusable(true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.orenge_button)));
+        popupWindow.showAtLocation(v, Gravity.CENTER,0,0);
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int selectedId = selectLvl.getCheckedRadioButtonId();
+                int set;
+                //radio_button=popupview.findViewById(selectedId);
+                Map<String,Object> usermap=new HashMap<>();
+                if(selectedId==R.id.lvl_1){
+                    set=1;
+                }else if(selectedId==R.id.lvl_2){
+                    set=2;
+                }else{
+                    set=3;
+                }
+                usermap.put("Level",set);
+                db.collection("Users").document(curUser.getUid()).update(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Level updated successfully",Toast.LENGTH_LONG);
+                            popupWindow.dismiss();
+                            loadData();
+                           /* navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                            auth.signOut();
+                            navController.navigate(R.id.loginfragment);*/
+                        }else{
+                            Log.d("Select Level Fragment","onFailure: Level Selection"+task.getException().getMessage());
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+
+    private void sendFeedback() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL  , new String[] { "dhruvj5418@gmail.com" });
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Frenchopedia Feedback");
+
+        startActivity(Intent.createChooser(intent, "Email via..."));
+    }
+
+    private void reset(String email) {
+        auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"Email sent successfully!",Toast.LENGTH_LONG).show();
+                    auth.signOut();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void updateEmail(View v) {
