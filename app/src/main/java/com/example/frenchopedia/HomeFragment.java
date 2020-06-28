@@ -75,12 +75,13 @@ public class HomeFragment extends Fragment {
     private Toolbar.OnMenuItemClickListener toolListner=new Toolbar.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
+            Intent intent;
             switch (item.getItemId()){
-                case(R.id.translator):  Intent intent= new Intent(getActivity(),TranslationActivity.class);
+                case(R.id.translator):   intent= new Intent(getActivity(),TranslationActivity.class);
                                         startActivity(intent);
                                         break;
-                case(R.id.noteBook):  Intent intent1= new Intent(getActivity(),TranslationActivity.class);
-                                        startActivity(intent1);
+                case(R.id.noteBook):     intent= new Intent(getActivity(),NotesActivity.class);
+                                        startActivity(intent);
                                         break;
 
             }
