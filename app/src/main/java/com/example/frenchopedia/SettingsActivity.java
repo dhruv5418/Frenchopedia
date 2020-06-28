@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.app.AlertDialog;
@@ -66,11 +68,11 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     CircleImageView imageView;
     EditText edt_fName,edt_lName;
     Toolbar toolbar;
-    String nEmail;
     Button btn_updateEmail,btn_signOut,btn_resetPass,btn_feedBack;
     private FirebaseFirestore db;
     TextView txt_level,txt_email;
-    String fName,lName,email;
+    NavController navController;
+    String fName,lName,nEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,8 +98,11 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         txt_email=findViewById(R.id.txt_email);
         txt_level=findViewById(R.id.lbl_level);
         btn_updateEmail=findViewById(R.id.update_email);
+        btn_signOut=findViewById(R.id.btn_logOut);
+        btn_resetPass=findViewById(R.id.btn_resetPass);
         btn_updateEmail.setOnClickListener(this);
-       // btn_signOut=findViewById(R.id.)
+        btn_signOut.setOnClickListener(this);
+        btn_resetPass.setOnClickListener(this);
         imageView.setOnClickListener(changeProfile);
         loadData();
     }
@@ -142,9 +147,18 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()){
             case R.id.update_email: updateEmail(v);
                     break;
+            case R.id.btn_logOut: auth.signOut();
+                                      intent = new Intent(getApplicationContext(), MainActivity.class);
+                                     startActivity(intent);
+                                     break;
+
+            /*case R.id.btn_resetPass:  intent = new Intent(getApplicationContext(), emailverifyfragment.class);
+                                     startActivity(intent);
+                                     break;*/
         }
 
     }
