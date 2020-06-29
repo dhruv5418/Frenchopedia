@@ -55,21 +55,12 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         webView=view.findViewById(R.id.webView);
-        Button b=view.findViewById(R.id.logout);
         toolbar=view.findViewById(R.id.toolbar_home);
         toolbar.inflateMenu(R.menu.tool_home);
         toolbar.setOnMenuItemClickListener(toolListner);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadData(data , "text/html" , null);
 
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                auth.signOut();
-                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private Toolbar.OnMenuItemClickListener toolListner=new Toolbar.OnMenuItemClickListener() {
