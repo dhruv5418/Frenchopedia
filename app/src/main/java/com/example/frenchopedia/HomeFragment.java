@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,9 +19,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class HomeFragment extends Fragment {
@@ -29,8 +35,10 @@ public class HomeFragment extends Fragment {
     WebView webView;
     private FirebaseAuth auth;
     private FirebaseUser curUser;
+    private FirebaseFirestore db;
     NavController navController;
     Toolbar toolbar;
+    TextView txt_lvl1,txt_lvl2;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -39,7 +47,28 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         auth=FirebaseAuth.getInstance();
+        db=FirebaseFirestore.getInstance();
         setHasOptionsMenu(true);
+    }
+
+    private void loadData() {
+        readData(new FirestoreCallback() {
+            @Override
+            public void onClickback(DocumentSnapshot documentSnapshot) {
+                int a=(int)(long) documentSnapshot.get("Level");
+                switch (a){
+                    case 1: txt_lvl1.setText("Level:- "+getString(R.string.lvl_1));
+                            txt_lvl2.setText("Level:- "+getString(R.string.lvl_1));
+                        break;
+                    case 2: txt_lvl1.setText("Level:- "+getString(R.string.lvl_2));
+                            txt_lvl2.setText("Level:- "+getString(R.string.lvl_2));
+                        break;
+                    case 3: txt_lvl1.setText("Level:- "+getString(R.string.lvl_3));
+                            txt_lvl2.setText("Level:- "+getString(R.string.lvl_3));
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -58,6 +87,9 @@ public class HomeFragment extends Fragment {
         toolbar=view.findViewById(R.id.toolbar_home);
         toolbar.inflateMenu(R.menu.tool_home);
         toolbar.setOnMenuItemClickListener(toolListner);
+        txt_lvl1=view.findViewById(R.id.txt_lvl1);
+        txt_lvl2=view.findViewById(R.id.txt_lvl2);
+        loadData();
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadData(data , "text/html" , null);
 
@@ -74,10 +106,31 @@ public class HomeFragment extends Fragment {
                 case(R.id.noteBook):     intent= new Intent(getActivity(),NotesActivity.class);
                                         startActivity(intent);
                                         break;
-
             }
             return true;
         }
     };
+
+
+    private void readData(final FirestoreCallback firestoreCallback){
+        curUser=auth.getCurrentUser();
+        DocumentReference docref=db.collection("Users").document(curUser.getUid());
+        docref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
+                    documentSnapshot.getData();
+                    firestoreCallback.onClickback(documentSnapshot);
+                }else{
+                    Log.d("Else=","Doc not exist");
+                }
+            }
+        });
+    }
+    private interface FirestoreCallback{
+        void onClickback(DocumentSnapshot documentSnapshot);
+    }
+
+
 
 }

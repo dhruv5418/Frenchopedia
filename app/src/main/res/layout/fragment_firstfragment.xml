@@ -58,7 +58,7 @@
         android:textColor="@color/orenge_button"
         android:textSize="20dp" />
 
-    <ImageView
+  <!--  <ImageView
         android:id="@+id/img_faceBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,17 +66,17 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="84dp"
         android:layout_marginBottom="33dp"
-        android:src="@drawable/facebook" />
+        android:src="@drawable/facebook" />-->
 
-    <View
+  <!--  <View
         android:layout_width="1dp"
         android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="616dp"
-        android:background="@color/DarkGray" />
+        android:background="@color/DarkGray" />-->
 
-    <ImageView
+<!--    <ImageView
         android:id="@+id/img_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,6 +85,6 @@
         android:layout_marginStart="270dp"
         android:layout_marginEnd="84dp"
         android:layout_marginBottom="33dp"
-        app:srcCompat="@drawable/ggl" />
+        app:srcCompat="@drawable/ggl" />-->
 
 </RelativeLayout>

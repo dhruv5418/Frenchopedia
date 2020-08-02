@@ -62,7 +62,7 @@ public class SelectlevelFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        auth.signOut();
+        //auth.signOut();
     }
 
     @Override
