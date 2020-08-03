@@ -25,4 +25,9 @@
         android:name="com.example.frenchopedia.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/playvideoFragment"
+        android:name="com.example.frenchopedia.PlayvideoFragment"
+        android:label="fragment_playvideo"
+        tools:layout="@layout/fragment_playvideo" />
 </navigation>
