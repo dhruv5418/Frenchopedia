@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -76,5 +77,25 @@ public class PracticeActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerView_Practice);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(practiceAdapter);
+        practiceAdapter.setOnClickListner(onClickListener);
     }
+
+    public View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
+            int position = viewHolder.getAdapterPosition();
+            String title = parrayList.get(position).getName();
+            Toast.makeText(getApplicationContext(), "title=" + title, Toast.LENGTH_LONG).show();
+            Intent intent;
+            switch (title) {
+                case "Days":
+                    intent = new Intent(PracticeActivity.this, PracticesupportActivity.class);
+                    intent.putExtra("Title", "Days");
+                    startActivity(intent);
+                    break;
+            }
+        }
+    };
 }

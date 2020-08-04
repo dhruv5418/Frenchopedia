@@ -44,6 +44,10 @@ public class PracticeAdapter extends RecyclerView.Adapter<PracticeAdapter.ViewHo
     public int getItemCount() {
         return arrayListPractice.size();
     }
+    public void setOnClickListner(View.OnClickListener onClickListner)
+    {
+        clickListener = onClickListner;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
