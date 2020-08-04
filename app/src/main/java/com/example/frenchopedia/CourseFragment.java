@@ -20,8 +20,7 @@ import android.widget.VideoView;
 
 public class CourseFragment extends Fragment implements View.OnClickListener {
 
-    LinearLayout l1;
-    LinearLayout l2;
+    LinearLayout l1,l2;
 
 
     NavController navController;
@@ -79,7 +78,6 @@ Toolbar toolbar;
                 navController.navigate(R.id.playvideoFragment,b);
                 break;
                 }
-
 
         }
 
