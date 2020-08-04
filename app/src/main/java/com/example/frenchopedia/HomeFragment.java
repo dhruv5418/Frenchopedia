@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     NavController navController;
     Toolbar toolbar;
     TextView txt_lvl1,txt_lvl2;
-    LinearLayout layoutPractice;
+    LinearLayout layoutPractice,layoutQuiz;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -90,6 +90,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         toolbar.inflateMenu(R.menu.tool_home);
         toolbar.setOnMenuItemClickListener(toolListner);
         layoutPractice=view.findViewById(R.id.layout_practice);
+        layoutQuiz=view.findViewById(R.id.layout_quiz);
+        layoutQuiz.setOnClickListener(this);
         layoutPractice.setOnClickListener(this);
         txt_lvl1=view.findViewById(R.id.txt_lvl1);
         txt_lvl2=view.findViewById(R.id.txt_lvl2);
@@ -140,7 +142,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                         intent=new Intent(getActivity(),PracticeActivity.class);
                                         startActivity(intent);
                                         break;
+            case R.id.layout_quiz:
+                                        intent=new Intent(getActivity(),QuizActivity.class);
+                                        startActivity(intent);
+                                        break;
+
         }
+
     }
 
     private interface FirestoreCallback{

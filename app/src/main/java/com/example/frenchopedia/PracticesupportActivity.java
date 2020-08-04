@@ -53,13 +53,11 @@ public class PracticesupportActivity extends AppCompatActivity {
         d.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Toast.makeText(getApplicationContext(),"Not Exist"+dataSnapshot,Toast.LENGTH_LONG).show();
                 if (dataSnapshot.exists()) {
-                    Toast.makeText(getApplicationContext(),"Exist"+dataSnapshot,Toast.LENGTH_LONG).show();
+
                     for (DataSnapshot npsnapshot : dataSnapshot.getChildren()) {
                         Material l = npsnapshot.getValue(Material.class);
                         days.add(l);
-                        Toast.makeText(getApplicationContext(),"Converted"+days,Toast.LENGTH_LONG).show();
                     }
                     generateView(days);
                 }
