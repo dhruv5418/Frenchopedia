@@ -21,6 +21,7 @@ import android.widget.VideoView;
 public class CourseFragment extends Fragment implements View.OnClickListener {
 
     LinearLayout l1;
+    LinearLayout l2;
 
 
     NavController navController;
@@ -53,9 +54,16 @@ Toolbar toolbar;
         toolbar=view.findViewById(R.id.toolbar_course);
         l1=view.findViewById(R.id.video1);
         l1.setOnClickListener(this);
+
+        l2= view.findViewById(R.id.video2);
+        l2.setOnClickListener(this);
+
+
         toolbar.inflateMenu(R.menu.tool_course);
         navController= Navigation.findNavController(getActivity(),R.id.nav_dashboard);
     }
+
+
 
 
     @Override
@@ -63,11 +71,18 @@ Toolbar toolbar;
         Bundle b=new Bundle();
         switch (v.getId()){
             case R.id.video1:
-                b.putInt("index",1);
-                    navController.navigate(R.id.playvideoFragment,b);
+                 b.putInt("index",1);
+                 navController.navigate(R.id.playvideoFragment,b);
+                 break;
+            case R.id.video2:
+                b.putInt("index",2);
+                navController.navigate(R.id.playvideoFragment,b);
+                break;
+                }
+
+
         }
 
     }
 
 
-}
