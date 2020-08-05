@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/HiddenTitleTheme">
-        <activity android:name=".PracticesupportActivity"></activity>
+        <activity android:name=".QuizsupportActivity"></activity>
+        <activity android:name=".PracticesupportActivity" />
         <activity android:name=".PracticeActivity" />
         <activity android:name=".NotesActivity" />
         <activity android:name=".SettingsActivity" />
@@ -27,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuizActivity"/>
+        <activity android:name=".QuizActivity" />
     </application>
 
 </manifest>

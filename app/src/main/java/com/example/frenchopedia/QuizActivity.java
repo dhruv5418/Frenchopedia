@@ -77,7 +77,25 @@ public class QuizActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerView_Quiz);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(practiceAdapter);
-        //practiceAdapter.setOnClickListner(onClickListener);
+        practiceAdapter.setOnClickListner(onClickListener);
     }
+    public View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
+            int position = viewHolder.getAdapterPosition();
+            String title = parrayList.get(position).getName();
+            Toast.makeText(getApplicationContext(), "title=" + title, Toast.LENGTH_LONG).show();
+            Intent intent;
+            switch (title) {
+                case "Days":
+                    intent = new Intent(QuizActivity.this, PracticesupportActivity.class);
+                    intent.putExtra("Title", "Days");
+                    startActivity(intent);
+                    break;
+            }
+        }
+    };
 
 }
