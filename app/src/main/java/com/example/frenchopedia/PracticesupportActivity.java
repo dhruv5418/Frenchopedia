@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.frenchopedia.Adapter.PracticesupportAdapter;
@@ -18,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class PracticesupportActivity extends AppCompatActivity {
@@ -39,7 +43,7 @@ public class PracticesupportActivity extends AppCompatActivity {
     private void select(String value) {
             switch (value) {
                 case "Days":
-                    d = FirebaseDatabase.getInstance().getReference().child("Days");
+                    d = FirebaseDatabase.getInstance().getReference().child("Days of Week");
                     Log.d("MainFragment", "idmon=" + d);
                     loadJson();
                     break;
@@ -53,6 +57,14 @@ public class PracticesupportActivity extends AppCompatActivity {
                     loadJson();
                     break;
                 case "Saison": d= FirebaseDatabase.getInstance().getReference().child("Saison");
+                    Log.d("MainFragment","idmon="+d);
+                    loadJson();
+                    break;
+                case "Weather": d= FirebaseDatabase.getInstance().getReference().child("Weather");
+                    Log.d("MainFragment","idmon="+d);
+                    loadJson();
+                    break;
+                case "Months": d= FirebaseDatabase.getInstance().getReference().child("Months");
                     Log.d("MainFragment","idmon="+d);
                     loadJson();
                     break;
@@ -89,7 +101,28 @@ public class PracticesupportActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(practiceAdapter);
         Toast.makeText(getApplicationContext(),"done",Toast.LENGTH_LONG).show();
-        //practiceAdapter.setOnClickListner(onClickListener);
+        practiceAdapter.setOnClickListner(onClickListener);
     }
+    public View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
+            int position = viewHolder.getAdapterPosition();
+
+            String url= days.get(position).getPronounciation();
+            Log.d("OnClick","url="+url);
+            try {
+                MediaPlayer player = new MediaPlayer();
+                player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                player.setDataSource(url);
+                player.prepare();
+                player.start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Toast.makeText(getApplicationContext(),days.get(position).getFrench(),Toast.LENGTH_SHORT).show();
+        }
+    };
 
 }

@@ -36,8 +36,9 @@ public class PracticeAdapter extends RecyclerView.Adapter<PracticeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull PracticeAdapter.ViewHolder holder, int position) {
-        Glide.with(context).asBitmap().load(arrayListPractice.get(position).getImage()).into(holder.imgv_pokemon);
-        holder.txt_pokrmon.setText(arrayListPractice.get(position).getName());
+        Glide.with(context).asBitmap().load(arrayListPractice.get(position).getImage()).into(holder.img_view);
+        holder.txt_1.setText(arrayListPractice.get(position).getName());
+        holder.txt_2.setText(arrayListPractice.get(position).getName());
     }
 
     @Override
@@ -49,14 +50,16 @@ public class PracticeAdapter extends RecyclerView.Adapter<PracticeAdapter.ViewHo
         clickListener = onClickListner;
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView imgv_pokemon;
-        TextView txt_pokrmon;
+        ImageView img_view;
+        TextView txt_1,txt_2;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgv_pokemon=itemView.findViewById(R.id.imgv_pokemon);
-            txt_pokrmon=itemView.findViewById(R.id.txt_pokemon);
+            img_view=itemView.findViewById(R.id.img_view);
+            txt_1=itemView.findViewById(R.id.txt_1);
+            txt_2=itemView.findViewById(R.id.txt_2);
             itemView.setTag(this);
             itemView.setOnClickListener(clickListener);
         }
