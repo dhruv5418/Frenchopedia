@@ -95,6 +95,10 @@ public class PracticeActivity extends AppCompatActivity {
                     intent.putExtra("Title", "Days");
                     startActivity(intent);
                     break;
+                case "Numbers":intent=new Intent(PracticeActivity.this,PracticesupportActivity.class);
+                    intent.putExtra("Title","Numbers");
+                    startActivity(intent);
+                    break;
             }
         }
     };

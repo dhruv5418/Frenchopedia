@@ -43,6 +43,10 @@ public class PracticesupportActivity extends AppCompatActivity {
                     Log.d("MainFragment", "idmon=" + d);
                     loadJson();
                     break;
+                case "Numbers": d= FirebaseDatabase.getInstance().getReference().child("Numbers");
+                    Log.d("MainFragment","idmon="+d);
+                    loadJson();
+                    break;
             }
     }
 
