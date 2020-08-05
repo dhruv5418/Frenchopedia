@@ -63,6 +63,14 @@ public class PlayvideoFragment extends Fragment {
             case 3: uri = Uri.parse("https://firebasestorage.googleapis.com/v0/b/frenchopedia-70435.appspot.com/o/course%2FHow%20to%20tell%20time%20in%20French.mp4?alt=media&token=e1b27863-afaf-4ae6-9142-e15d0e650ba0");
                    playVideo();
                     break;
+
+            case 4: uri= Uri.parse("https://firebasestorage.googleapis.com/v0/b/frenchopedia-70435.appspot.com/o/course%2FTop%2010%20Basic%20French%20Words%20Every%20BEGINNER%20Should%20Know.mp4?alt=media&token=1054e45e-6da1-49ca-bb78-68da56bcbb91");
+                   playVideo();
+                   break;
+
+            case 5: uri= Uri.parse("https://firebasestorage.googleapis.com/v0/b/frenchopedia-70435.appspot.com/o/course%2Fvideo5.mp4?alt=media&token=890df3e6-7e82-441c-a22d-90f3d648edac");
+                   playVideo();
+                   break;
         }
 
     }
