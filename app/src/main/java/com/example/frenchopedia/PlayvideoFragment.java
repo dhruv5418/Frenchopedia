@@ -60,7 +60,9 @@ public class PlayvideoFragment extends Fragment {
             case 2: uri =Uri.parse("https://firebasestorage.googleapis.com/v0/b/frenchopedia-70435.appspot.com/o/course%2FLearn%20French.%20Pronunciation%20-%20French%20alphabet%20(l'alphabet%20fran%C3%A7ais).mp4?alt=media&token=e28cfcef-8d39-480a-8265-2ccdc09d67d9");
                     playVideo();
                     break;
-
+            case 3: uri = Uri.parse("https://firebasestorage.googleapis.com/v0/b/frenchopedia-70435.appspot.com/o/course%2FHow%20to%20tell%20time%20in%20French.mp4?alt=media&token=e1b27863-afaf-4ae6-9142-e15d0e650ba0");
+                   playVideo();
+                    break;
         }
 
     }
