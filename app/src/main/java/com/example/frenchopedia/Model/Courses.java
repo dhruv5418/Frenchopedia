@@ -10,9 +10,9 @@ public class Courses {
     @SerializedName("image")
     @Expose
     private String image;
-    @SerializedName("URL")
+    @SerializedName("url")
     @Expose
-    private String uRL;
+    private String url;
 
     public String getTitle() {
         return title;
@@ -30,12 +30,13 @@ public class Courses {
         this.image = image;
     }
 
-    public String getURL() {
-        return uRL;
+    public String getUrl() {
+        return url;
     }
 
-    public void setURL(String uRL) {
-        this.uRL = uRL;
+    public void setUrl(String url) {
+        this.url = url;
     }
+
 
 }

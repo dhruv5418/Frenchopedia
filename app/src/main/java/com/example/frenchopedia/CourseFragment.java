@@ -110,9 +110,12 @@ public class CourseFragment extends Fragment{
 
             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
             int position = viewHolder.getAdapterPosition();
-
-            String url= courses.get(position).getURL();
+            Log.d("OnClick1","url="+position);
+            String url= courses.get(position).getUrl();
             Log.d("OnClick","url="+url);
+            Bundle b=new Bundle();
+            b.putString("url",url);
+            navController.navigate(R.id.playvideoFragment,b);
 
         }
     };
