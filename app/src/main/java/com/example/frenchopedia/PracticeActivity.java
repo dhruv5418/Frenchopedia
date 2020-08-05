@@ -99,6 +99,14 @@ public class PracticeActivity extends AppCompatActivity {
                     intent.putExtra("Title","Numbers");
                     startActivity(intent);
                     break;
+                case "Seasons":intent=new Intent(PracticeActivity.this,PracticesupportActivity.class);
+                    intent.putExtra("Title","Saison");
+                    startActivity(intent);
+                    break;
+                case "Colors":intent=new Intent(PracticeActivity.this,PracticesupportActivity.class);
+                    intent.putExtra("Title","Colors");
+                    startActivity(intent);
+                    break;
             }
         }
     };
