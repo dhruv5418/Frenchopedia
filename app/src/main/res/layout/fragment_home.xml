@@ -133,13 +133,18 @@
                                 android:textSize="20sp"
                                 android:textColor="@color/Black"
                                 />
-
-                            <ProgressBar
-                                android:id="@+id/progressBar"
-                                style="?android:attr/progressBarStyleHorizontal"
+                            <com.daimajia.numberprogressbar.NumberProgressBar
+                                android:id="@+id/progress_practice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1" />
+                                app:progress_reached_color="@color/orenge_button"
+                                app:progress_max="100"
+                                android:layout_marginStart="5dp"
+                                app:progress_current="0"
+                                app:progress_text_size="20sp"
+                                app:progress_reached_bar_height="8dp"
+                                app:progress_unreached_bar_height="10dp"
+                                />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
