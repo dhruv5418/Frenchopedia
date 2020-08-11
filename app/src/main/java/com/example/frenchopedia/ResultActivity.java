@@ -65,6 +65,35 @@ public class ResultActivity extends AppCompatActivity {
         txt_tot.setText(String.valueOf(t));
         saveResult();
         updateResult();
+        updateProgress();
+    }
+
+    private void updateProgress() {
+        readData1(new FirestoreCallback() {
+            @Override
+            public void onClickback(DocumentSnapshot documentSnapshot) {
+                double p=Double.valueOf(documentSnapshot.get("total").toString());
+                int a=(int)(long) documentSnapshot.get(ref);
+                Toast.makeText(getApplicationContext(),"Total"+p,Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Ref="+a,Toast.LENGTH_LONG).show();
+                if (a==0){
+                    Log.d("supportPractice","Vaue="+documentSnapshot.get(ref).toString());
+                    Map<String,Object> usermap=new HashMap<>();
+                    usermap.put(ref,1);
+                    p=p+16.67;
+                    usermap.put("total",p);
+                    db.collection("Users").document(curUser.getUid()).collection("Progress").document("ProgressQuiz").update(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getApplicationContext(),"Progress updated for quiz"+ref,Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"Progress Not updated for quiz"+ref,Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     private void saveResult() {
@@ -109,7 +138,22 @@ public class ResultActivity extends AppCompatActivity {
             }
         });
     }
+    private void readData1(final FirestoreCallback firestoreCallback){
+        curUser=auth.getCurrentUser();
+        DocumentReference docref=db.collection("Users").document(curUser.getUid()).collection("Progress").document("ProgressQuiz");
+        docref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
+                    documentSnapshot.getData();
+                    firestoreCallback.onClickback(documentSnapshot);
+                }else{
+                    Log.d("Else=","Doc not exist");
+                }
+            }
+        });
 
+    }
 
 
     private void readData(final FirestoreCallback firestoreCallback){

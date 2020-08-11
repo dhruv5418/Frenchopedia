@@ -41,9 +41,6 @@ public class QuizsupportActivity extends AppCompatActivity {
     Button btn_next;
     RadioGroup selectAns;
     RadioButton a_1,a_2,a_3,a_4,a;
-    private FirebaseAuth auth;
-    private FirebaseFirestore db;
-    private FirebaseUser curUser;
     int total=0;
     int correct=0;
     int wrong=0;
