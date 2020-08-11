@@ -1,11 +1,14 @@
 package com.example.frenchopedia;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +40,7 @@ public class ExtraFragment extends Fragment {
     CourseAdapter courseAdapter;
     ArrayList<Courses> extras=new ArrayList<>();
     Toolbar toolbar;
+    NavController navController;
     public ExtraFragment() {
         // Required empty public constructor
     }
@@ -60,6 +64,7 @@ public class ExtraFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         toolbar=view.findViewById(R.id.toolbar_extra);
         recyclerView=view.findViewById(R.id.recyclerView_Extra);
+        navController= Navigation.findNavController(getActivity(),R.id.nav_dashboard);
         getJson();
     }
 
@@ -91,5 +96,21 @@ public class ExtraFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(courseAdapter);
         Toast.makeText(getActivity().getApplicationContext(),"done",Toast.LENGTH_LONG).show();
+        courseAdapter.setOnClickListner(onClickListener);
     }
+    public View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
+            int position = viewHolder.getAdapterPosition();
+            Log.d("OnClick1","url="+position);
+            String url= extras.get(position).getUrl();
+            Log.d("OnClick","url="+url);
+            Intent intent=new Intent();
+            intent.putExtra("url",url);
+            startActivity(intent);
+        }
+    };
+
 }
