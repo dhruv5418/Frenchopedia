@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.frenchopedia.Adapter.PracticeAdapter;
@@ -15,6 +17,12 @@ import com.example.frenchopedia.Model.Practice;
 import com.example.frenchopedia.Model.Practice_;
 import com.example.frenchopedia.Retrofit.GetDataService;
 import com.example.frenchopedia.Retrofit.RetrofitClientInstance;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -28,11 +36,19 @@ public class QuizActivity extends AppCompatActivity {
     PracticeAdapter practiceAdapter;
     ArrayList<Practice_> parrayList;
     Toolbar toolbar;
+    TextView txt_result;
+    private FirebaseAuth auth;
+    private FirebaseUser curUser;
+    private FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         toolbar= findViewById(R.id.toolbar_quize);
+        txt_result=findViewById(R.id.txt_totalResult);
+        auth= FirebaseAuth.getInstance();
+        curUser=auth.getCurrentUser();
+        db= FirebaseFirestore.getInstance();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -44,6 +60,37 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
         getJson();
+        getResult();
+    }
+
+    private void getResult() {
+        readData(new FirestoreCallback() {
+            @Override
+            public void onClickback(DocumentSnapshot documentSnapshot) {
+                double p=Double.valueOf(documentSnapshot.get("total").toString());
+                txt_result.setText("Score:- "+p+"/300");
+            }
+        });
+    }
+
+    private void readData(final FirestoreCallback firestoreCallback){
+        curUser=auth.getCurrentUser();
+        DocumentReference docref=db.collection("Users").document(curUser.getUid()).collection("Result").document("result");
+        docref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
+                    documentSnapshot.getData();
+                    firestoreCallback.onClickback(documentSnapshot);
+                }else{
+                    Log.d("Else=","Doc not exist");
+                }
+            }
+        });
+
+    }
+    private interface FirestoreCallback{
+        void onClickback(DocumentSnapshot documentSnapshot);
     }
 
     private void getJson() {
