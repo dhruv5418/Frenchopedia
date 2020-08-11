@@ -67,7 +67,7 @@ public class QuizActivity extends AppCompatActivity {
         readData(new FirestoreCallback() {
             @Override
             public void onClickback(DocumentSnapshot documentSnapshot) {
-                double p=Double.valueOf(documentSnapshot.get("total").toString());
+                int p=Integer.parseInt(documentSnapshot.get("total").toString());
                 txt_result.setText("Score:- "+p+"/300");
             }
         });
