@@ -183,14 +183,6 @@ public class registrationfragment extends Fragment implements View.OnClickListen
                     progressmap1.put("5",a);
                     progressmap1.put("6",a);
                     progressmap1.put("total",a);
-                    Map<String,Object> progressmap2=new HashMap<>();
-                    progressmap2.put("1",a);
-                    progressmap2.put("2",a);
-                    progressmap2.put("3",a);
-                    progressmap2.put("4",a);
-                    progressmap2.put("5",a);
-                    progressmap2.put("6",a);
-                    progressmap2.put("total",a);
                     db.collection("Users").document(user.getUid()).set(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -206,7 +198,13 @@ public class registrationfragment extends Fragment implements View.OnClickListen
                             Toast.makeText(getActivity().getApplicationContext(),"Data1 Saved!",Toast.LENGTH_LONG).show();
                         }
                     });
-                    db.collection("Users").document(user.getUid()).collection("Progress").document("ProgressQuiz").set(progressmap2).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    db.collection("Users").document(user.getUid()).collection("Progress").document("ProgressQuiz").set(progressmap1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getActivity().getApplicationContext(),"Data2 Saved!",Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    db.collection("Users").document(user.getUid()).collection("Result").document("result").set(progressmap1).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(getActivity().getApplicationContext(),"Data2 Saved!",Toast.LENGTH_LONG).show();

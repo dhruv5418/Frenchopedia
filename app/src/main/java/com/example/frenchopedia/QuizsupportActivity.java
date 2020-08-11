@@ -47,7 +47,7 @@ public class QuizsupportActivity extends AppCompatActivity {
     int total=0;
     int correct=0;
     int wrong=0;
-
+    String title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +68,20 @@ public class QuizsupportActivity extends AppCompatActivity {
         switch (value) {
             case "Saison":
                 Log.d("MainFragment", "idmon=" + d);
+                title="Quiz3 Saisons";
                 loadQuiz();
                 break;
+            case "Numbers":
+                Log.d("MainFragment", "idmon=" + d);
+                title="Quiz1 Numbers";
+                loadQuiz();
+                break;
+            case "Months":
+                Log.d("MainFragment", "idmon=" + d);
+                title="Quiz4 Months";
+                loadQuiz();
+                break;
+
         }
     }
 
@@ -79,11 +91,12 @@ public class QuizsupportActivity extends AppCompatActivity {
             Intent intent=new Intent(QuizsupportActivity.this,ResultActivity.class);
             intent.putExtra("correct",String.valueOf(correct));
             intent.putExtra("wrong",String.valueOf(wrong));
+            intent.putExtra("title",value);
             startActivity(intent);
 
         }else{
             Log.d("Quiz","called="+d);
-            d = FirebaseDatabase.getInstance().getReference().child("Quiz3 Saisons").child(String.valueOf(total));
+            d = FirebaseDatabase.getInstance().getReference().child(title).child(String.valueOf(total));
             d.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

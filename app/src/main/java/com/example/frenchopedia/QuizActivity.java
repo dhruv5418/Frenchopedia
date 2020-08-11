@@ -94,8 +94,20 @@ public class QuizActivity extends AppCompatActivity {
                     intent.putExtra("Title", "Saison");
                     startActivity(intent);
                     break;
+                case "Numbers":
+                    intent = new Intent(QuizActivity.this, QuizsupportActivity.class);
+                    intent.putExtra("Title", "Numbers");
+                    startActivity(intent);
+                    break;
+                case "Months":
+                    intent = new Intent(QuizActivity.this, QuizsupportActivity.class);
+                    intent.putExtra("Title", "Months");
+                    startActivity(intent);
+                    break;
             }
         }
     };
+
+
 
 }
