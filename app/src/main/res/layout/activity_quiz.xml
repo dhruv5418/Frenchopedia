@@ -15,7 +15,17 @@
         app:title="Quiz Time"
         app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/orenge_button"/>
+        app:titleTextColor="@color/orenge_button">
+        <TextView
+            android:id="@+id/txt_totalResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Result"
+            android:textSize="20dp"
+            android:textColor="@color/orenge_button"
+            android:layout_marginStart="75dp"
+            />
+    </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_Quiz"
         android:layout_width="match_parent"
