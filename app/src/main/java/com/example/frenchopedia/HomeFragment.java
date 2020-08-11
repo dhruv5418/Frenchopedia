@@ -80,6 +80,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 prog_prac.setProgress((int) p);
             }
         });
+        readData2(new FirestoreCallback() {
+            @Override
+            public void onClickback(DocumentSnapshot documentSnapshot) {
+                double p=Double.valueOf(documentSnapshot.get("total").toString());
+                prog_quiz.setProgress((int) p);
+            }
+        });
     }
 
     @Override
@@ -105,6 +112,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         txt_lvl1=view.findViewById(R.id.txt_lvl1);
         txt_lvl2=view.findViewById(R.id.txt_lvl2);
         prog_prac=view.findViewById(R.id.progress_practice);
+        prog_quiz=view.findViewById(R.id.progress_quiz);
         loadData();
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadData(data , "text/html" , null);

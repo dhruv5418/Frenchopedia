@@ -19,7 +19,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-           // proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     /*configurations {
@@ -48,15 +48,15 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     implementation 'com.google.firebase:firebase-auth:19.3.1'
-    implementation ('com.google.firebase:firebase-database:19.3.0'){
+    implementation('com.google.firebase:firebase-database:19.3.0') {
         exclude module: 'protobuf-javalite'
     }
-    implementation ('com.google.firebase:firebase-storage:19.1.1'){
+    implementation('com.google.firebase:firebase-storage:19.1.1') {
         exclude module: 'protobuf-javalite'
     }
-    implementation ('com.google.firebase:firebase-firestore:21.4.3'){
+    implementation('com.google.firebase:firebase-firestore:21.4.3') {
         exclude module: 'protobuf-javalite'
-       // exclude group: 'io.grpc',module: 'grpc-all'
+        // exclude group: 'io.grpc',module: 'grpc-all'
     }
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -76,8 +76,8 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation('com.google.cloud:google-cloud-translate:1.94.5') {
-             //exclude group: 'org.apache.httpcomponents'
-             // exclude group: 'org.json', module: 'json'
+        //exclude group: 'org.apache.httpcomponents'
+        // exclude group: 'org.json', module: 'json'
         exclude module: 'protolite-well-known-types'
         exclude module: 'protobuf-javalite'
         exclude module: 'proto-google-common-protos'
@@ -86,7 +86,7 @@ dependencies {
         exclude module: 'protobuf-java-util'
         //exclude group: 'com.google.api-client', module: 'google-api-client-appengine'
         //exclude group: 'com.google.guava'
-       // exclude module: 'guava-jdk5'
+        // exclude module: 'guava-jdk5'
     }
     annotationProcessor 'com.google.cloud:google-cloud-translate:1.94.5'
     implementation 'io.grpc:grpc-android:1.28.1'
