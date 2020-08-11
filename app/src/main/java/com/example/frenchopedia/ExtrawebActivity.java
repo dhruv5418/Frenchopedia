@@ -7,17 +7,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 public class ExtrawebActivity extends AppCompatActivity {
 
     Uri uri;
     WebView webView;
     String u;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,25 +28,18 @@ public class ExtrawebActivity extends AppCompatActivity {
         Intent intent = getIntent();
         u = intent.getStringExtra("url");
         webView=findViewById(R.id.webView_extra);
-        webView.getSettings().setJavaScriptEnabled(true);
-        final Activity activity = this;
-
-        webView.setWebViewClient(new WebViewClient() {
-            @SuppressWarnings("deprecation")
+        toolbar=findViewById(R.id.toolbar_extraWeb);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                Toast.makeText(activity, description, Toast.LENGTH_SHORT).show();
-            }
-            @TargetApi(android.os.Build.VERSION_CODES.M)
-            @Override
-            public void onReceivedError(WebView view, WebResourceRequest req, WebResourceError rerr) {
-                // Redirect to deprecated method, so you can use it in all SDK versions
-                onReceivedError(view, rerr.getErrorCode(), rerr.getDescription().toString(), req.getUrl().toString());
+            public void onClick(View v) {
+                webView.stopLoading();
+                onBackPressed();
             }
         });
-
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.loadUrl(u);
-        setContentView(webView );
 
     }
 }

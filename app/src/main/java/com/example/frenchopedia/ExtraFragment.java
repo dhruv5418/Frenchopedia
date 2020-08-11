@@ -107,7 +107,7 @@ public class ExtraFragment extends Fragment {
             Log.d("OnClick1","url="+position);
             String url= extras.get(position).getUrl();
             Log.d("OnClick","url="+url);
-            Intent intent=new Intent();
+            Intent intent=new Intent(getActivity(),ExtrawebActivity.class);
             intent.putExtra("url",url);
             startActivity(intent);
         }
