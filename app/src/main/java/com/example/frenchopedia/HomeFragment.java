@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
+    NumberProgressBar prog_quiz,prog_prac;
     String data="<div id=\"widget\";\"><iframe src=\"https://www.innovativelanguage.com/widgets/wotd/embed.php?language=French&type=small&bg=url%28/widgets/wotd/skin/images/small/Cherry_Blossom.png%29%20no-repeat%200%200&content=%23000&header=%23DBB9D4&highlight=%23D973BE&opacity=.15&scrollbg=%23D991C6&sound=%23D973BE&text=%23BF43A5&quiz=N\" width=\"360\" height=\"190\" frameborder=\"0\" scrolling=\"no\"></iframe></div>";
     WebView webView;
     private FirebaseAuth auth;
@@ -71,6 +73,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
+        readData1(new FirestoreCallback() {
+            @Override
+            public void onClickback(DocumentSnapshot documentSnapshot) {
+                double p=Double.valueOf(documentSnapshot.get("total").toString());
+                prog_prac.setProgress((int) p);
+            }
+        });
     }
 
     @Override
@@ -95,6 +104,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         layoutPractice.setOnClickListener(this);
         txt_lvl1=view.findViewById(R.id.txt_lvl1);
         txt_lvl2=view.findViewById(R.id.txt_lvl2);
+        prog_prac=view.findViewById(R.id.progress_practice);
         loadData();
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadData(data , "text/html" , null);
@@ -132,6 +142,38 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
+    }
+    private void readData1(final FirestoreCallback firestoreCallback){
+        curUser=auth.getCurrentUser();
+        DocumentReference docref=db.collection("Users").document(curUser.getUid()).collection("Progress").document("ProgressPractice");
+        docref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
+                    documentSnapshot.getData();
+                    firestoreCallback.onClickback(documentSnapshot);
+                }else{
+                    Log.d("Else=","Doc not exist");
+                }
+            }
+        });
+
+    }
+    private void readData2(final FirestoreCallback firestoreCallback){
+        curUser=auth.getCurrentUser();
+        DocumentReference docref=db.collection("Users").document(curUser.getUid()).collection("Progress").document("ProgressQuiz");
+        docref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
+                    documentSnapshot.getData();
+                    firestoreCallback.onClickback(documentSnapshot);
+                }else{
+                    Log.d("Else=","Doc not exist");
+                }
+            }
+        });
+
     }
 
     @Override
