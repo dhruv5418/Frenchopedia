@@ -175,6 +175,22 @@ public class registrationfragment extends Fragment implements View.OnClickListen
                     usermap.put("Email",email);
                     int a=0;
                     usermap.put("Level",a);
+                    Map<String,Object> progressmap1=new HashMap<>();
+                    progressmap1.put("1",a);
+                    progressmap1.put("2",a);
+                    progressmap1.put("3",a);
+                    progressmap1.put("4",a);
+                    progressmap1.put("5",a);
+                    progressmap1.put("6",a);
+                    progressmap1.put("total",a);
+                    Map<String,Object> progressmap2=new HashMap<>();
+                    progressmap2.put("1",a);
+                    progressmap2.put("2",a);
+                    progressmap2.put("3",a);
+                    progressmap2.put("4",a);
+                    progressmap2.put("5",a);
+                    progressmap2.put("6",a);
+                    progressmap2.put("total",a);
                     db.collection("Users").document(user.getUid()).set(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -184,6 +200,19 @@ public class registrationfragment extends Fragment implements View.OnClickListen
                             }
                         }
                     });
+                    db.collection("Users").document(user.getUid()).collection("Progress").document("ProgressPractice").set(progressmap1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getActivity().getApplicationContext(),"Data1 Saved!",Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    db.collection("Users").document(user.getUid()).collection("Progress").document("ProgressQuiz").set(progressmap2).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getActivity().getApplicationContext(),"Data2 Saved!",Toast.LENGTH_LONG).show();
+                        }
+                    });
+
                   /*  FirebaseAuth.getInstance().signOut();
                     //NavController navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
                     navController.navigate(R.id.loginfragment);*/
