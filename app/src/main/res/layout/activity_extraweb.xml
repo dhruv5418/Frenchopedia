@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExtrawebActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar_extraWeb"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/White"
+        android:elevation="4dp"
+        app:title="Extra Learning"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/orenge_button"/>
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/webView_extra"
+        android:layout_below="@+id/toolbar_extraWeb"
+        />
+</RelativeLayout>
