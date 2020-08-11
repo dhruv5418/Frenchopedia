@@ -205,4 +205,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         void onClickback(DocumentSnapshot documentSnapshot);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
 }
