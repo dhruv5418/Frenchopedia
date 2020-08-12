@@ -2,6 +2,7 @@ package com.example.frenchopedia;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -34,8 +35,7 @@ public class QuizsupportActivity extends AppCompatActivity {
 
     String value;
     DatabaseReference d;
-    //ArrayList<Material> materials = new ArrayList<>();
-    RecyclerView recyclerView;
+    Toolbar tool_q1;
     TextView txt_q;
     Button btn_next;
     RadioGroup selectAns;
@@ -55,6 +55,13 @@ public class QuizsupportActivity extends AppCompatActivity {
         a_3=findViewById(R.id.a_3);
         a_4=findViewById(R.id.a_4);
         btn_next=findViewById(R.id.btn_sub1);
+        tool_q1=findViewById(R.id.toolbar_q1);
+        tool_q1.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         Intent intent = getIntent();
         value = intent.getStringExtra("Title");
         select(value);

@@ -2,6 +2,7 @@ package com.example.frenchopedia;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -40,6 +41,7 @@ public class Quizsupport2Activity extends AppCompatActivity {
     int wrong=0;
     ImageView imageView;
     String title;
+    Toolbar tool_q2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,13 @@ public class Quizsupport2Activity extends AppCompatActivity {
         a_2=findViewById(R.id.a_2);
         a_3=findViewById(R.id.a_3);
         a_4=findViewById(R.id.a_4);
+        tool_q2=findViewById(R.id.toolbar_q2);
+        tool_q2.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         btn_next=findViewById(R.id.btn_sub1);
         Intent intent = getIntent();
         value = intent.getStringExtra("Title");

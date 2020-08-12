@@ -8,7 +8,7 @@
     tools:context=".QuizsupportActivity">
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:id="@+id/toolbar_q"
+        android:id="@+id/toolbar_q1"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/White"
         android:elevation="4dp"
@@ -22,7 +22,7 @@
         android:layout_centerVertical="true"
         android:layout_width="380dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/toolbar_q"
+        android:layout_below="@+id/toolbar_q1"
         android:layout_height="530dp"
         app:cardCornerRadius="10dp">
 

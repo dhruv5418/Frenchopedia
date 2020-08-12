@@ -2,6 +2,7 @@ package com.example.frenchopedia;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,7 +45,7 @@ public class PracticesupportActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseUser curUser;
     private FirebaseFirestore db;
-
+    Toolbar toolbar_p;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,13 @@ public class PracticesupportActivity extends AppCompatActivity {
         value = intent.getStringExtra("Title");
         auth=FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
+        toolbar_p=findViewById(R.id.toolbar_p);
+        toolbar_p.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         select(value);
         updateProgress();
     }
