@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -36,7 +37,7 @@ public class QuizsupportActivity extends AppCompatActivity {
     String value;
     DatabaseReference d;
     Toolbar tool_q1;
-    TextView txt_q;
+    TextView txt_q,txt_timer;
     Button btn_next;
     RadioGroup selectAns;
     RadioButton a_1,a_2,a_3,a_4,a;
@@ -56,6 +57,7 @@ public class QuizsupportActivity extends AppCompatActivity {
         a_4=findViewById(R.id.a_4);
         btn_next=findViewById(R.id.btn_sub1);
         tool_q1=findViewById(R.id.toolbar_q1);
+        txt_timer=findViewById(R.id.txt_timer1);
         tool_q1.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +67,7 @@ public class QuizsupportActivity extends AppCompatActivity {
         Intent intent = getIntent();
         value = intent.getStringExtra("Title");
         select(value);
+        reversTimer(30,txt_timer);
     }
 
     private void select(String value) {
@@ -162,6 +165,26 @@ public class QuizsupportActivity extends AppCompatActivity {
             });
         }
 
+    }
 
+    public void reversTimer(int seconds, final TextView tv){
+        new CountDownTimer(seconds*1000+1000,1000){
+            public void onTick(long millisUntillFinished){
+                int seconds = (int)(millisUntillFinished/1000);
+                int minutes=seconds/60;
+                seconds=seconds%60;
+                tv.setText((String.format("%02d",minutes))+":"+String.format("%02d",seconds));
+
+            }
+            public void onFinish(){
+                tv.setText("Completed");
+                Intent intent=new Intent(QuizsupportActivity.this,ResultActivity.class);
+                intent.putExtra("correct",String.valueOf(correct));
+                intent.putExtra("wrong",String.valueOf(wrong));
+                intent.putExtra("title",value);
+                startActivity(intent);
+            }
+
+        }.start();
     }
 }
