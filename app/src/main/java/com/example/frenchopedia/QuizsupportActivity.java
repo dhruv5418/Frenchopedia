@@ -87,6 +87,16 @@ public class QuizsupportActivity extends AppCompatActivity {
                 title="Quiz4 Months";
                 loadQuiz();
                 break;
+            case "Weather":
+                Log.d("MainFragment", "idmon=" + d);
+                title="Quiz5 Weather";
+                loadQuiz();
+                break;
+            case "Days":
+                Log.d("MainFragment", "idmon=" + d);
+                title="Quiz6 Days";
+                loadQuiz();
+                break;
 
         }
     }

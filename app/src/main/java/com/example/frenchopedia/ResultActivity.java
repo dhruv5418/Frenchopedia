@@ -110,6 +110,12 @@ public class ResultActivity extends AppCompatActivity {
             case "Colors":
                 ref="6";
                 break;
+            case "Days":
+                ref="2";
+                break;
+            case "Weather":
+                ref="3";
+                break;
         }
     }
 
