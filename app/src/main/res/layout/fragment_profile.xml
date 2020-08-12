@@ -22,6 +22,15 @@
         android:layout_height="116dp"
         android:id="@+id/image_p1"
         android:layout_marginTop="125dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_name"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/image_p1"
+        android:textColor="@color/Black"
+        android:textSize="15sp"/>
     <View
         android:id="@+id/divider_pro"
         android:layout_width="match_parent"

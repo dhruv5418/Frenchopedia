@@ -18,24 +18,33 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class ProfileFragment extends Fragment {
@@ -44,6 +53,8 @@ FirebaseAuth auth;
 FirebaseUser curUser;
 Toolbar toolbar;
 CircleImageView imageView;
+TextView txt_name;
+    private FirebaseFirestore db;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -56,6 +67,7 @@ CircleImageView imageView;
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         auth=FirebaseAuth.getInstance();
+        db= FirebaseFirestore.getInstance();
     }
 
     @Override
@@ -72,8 +84,40 @@ CircleImageView imageView;
         toolbar.inflateMenu(R.menu.tool_profile);
         toolbar.setOnMenuItemClickListener(toolListener);
         imageView=view.findViewById(R.id.image_p1);
+        txt_name=view.findViewById(R.id.txt_name);
         imageView.setOnClickListener(changeProfile);
+        loadData();
+    }
 
+    private void loadData() {
+        readData(new FirestoreCallback() {
+            @Override
+            public void onClickback(DocumentSnapshot documentSnapshot) {
+
+                txt_name.setText((documentSnapshot.get("First Name").toString()+" "+documentSnapshot.get("Last Name").toString()));
+
+            }
+        });
+
+    }
+    private void readData(final FirestoreCallback firestoreCallback){
+        curUser=auth.getCurrentUser();
+        DocumentReference docref=db.collection("Users").document(curUser.getUid());
+        docref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
+                    documentSnapshot.getData();
+                    firestoreCallback.onClickback(documentSnapshot);
+                }else{
+                    Log.d("Else=","Doc not exist");
+                }
+            }
+        });
+
+    }
+    private interface FirestoreCallback{
+        void onClickback(DocumentSnapshot documentSnapshot);
     }
 
     private Toolbar.OnMenuItemClickListener toolListener =new Toolbar.OnMenuItemClickListener() {
