@@ -1,6 +1,7 @@
 package com.example.frenchopedia;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -13,7 +14,6 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 public class ExtrawebActivity extends AppCompatActivity {
 

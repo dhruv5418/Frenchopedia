@@ -38,7 +38,6 @@ public class PracticeAdapter extends RecyclerView.Adapter<PracticeAdapter.ViewHo
     public void onBindViewHolder(@NonNull PracticeAdapter.ViewHolder holder, int position) {
         Glide.with(context).asBitmap().load(arrayListPractice.get(position).getImage()).into(holder.img_view);
         holder.txt_1.setText(arrayListPractice.get(position).getName());
-        holder.txt_2.setText(arrayListPractice.get(position).getName());
     }
 
     @Override
@@ -54,12 +53,11 @@ public class PracticeAdapter extends RecyclerView.Adapter<PracticeAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView img_view;
-        TextView txt_1,txt_2;
+        TextView txt_1;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             img_view=itemView.findViewById(R.id.img_view);
             txt_1=itemView.findViewById(R.id.txt_1);
-            txt_2=itemView.findViewById(R.id.txt_2);
             itemView.setTag(this);
             itemView.setOnClickListener(clickListener);
         }

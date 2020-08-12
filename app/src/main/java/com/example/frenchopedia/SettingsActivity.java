@@ -62,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     CircleImageView imageView;
     EditText edt_fName,edt_lName;
     Toolbar toolbar;
-    Button btn_updateEmail,btn_signOut,btn_resetPass,btn_feedBack,btn_updateLevel;
+    Button btn_updateEmail,btn_signOut,btn_resetPass,btn_feedBack,btn_updateLevel,btn_delete;
     private FirebaseFirestore db;
     TextView txt_level,txt_email;
     NavController navController;
@@ -96,6 +96,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         btn_resetPass=findViewById(R.id.btn_resetPass);
         btn_feedBack=findViewById(R.id.btn_feedBack);
         btn_updateLevel=findViewById(R.id.update_level);
+        btn_delete=findViewById(R.id.btn_deleteProf);
+        btn_delete.setOnClickListener(this);
         btn_updateLevel.setOnClickListener(this);
         btn_feedBack.setOnClickListener(this);
         btn_updateEmail.setOnClickListener(this);
@@ -163,7 +165,78 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                                      break;
             case R.id.update_level: updateLevel(v);
                                      break;
+            case R.id.btn_deleteProf: deleteProfile(v);
+                break;
         }
+    }
+
+    private void deleteProfile(View v) {
+        View popupview=getLayoutInflater().inflate(R.layout.popview3,null);
+        final PopupWindow popupWindow=new PopupWindow(popupview, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
+        if(Build.VERSION.SDK_INT>=21){
+            popupWindow.setElevation(5.0f);
+        }
+        final EditText edtPEmail=popupview.findViewById(R.id.edt_popemail);
+        final EditText edtPPass=popupview.findViewById(R.id.edt_poppassword);
+
+        //Log.d("Setting","email="+nEmail);
+        Button btnSubmit=popupview.findViewById(R.id.btn_poplogin);
+        popupWindow.setFocusable(true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.orenge_button)));
+        popupWindow.showAtLocation(v, Gravity.CENTER,0,0);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(TextUtils.isEmpty(edtPEmail.getText().toString())) {
+                    edtPEmail.setError("New Email cannot be blank!");
+                    edtPEmail.requestFocus();
+                }else if(TextUtils.isEmpty(edtPPass.getText().toString())) {
+                    edtPPass.setError("Password cannot be blank!");
+                    edtPPass.requestFocus();
+                }else{
+                    if(edtPPass.getText().toString().length()<6){
+                        edtPPass.setError("Invalid password,Should be at least 6 characters");
+                        edtPPass.requestFocus();
+                    } else {
+                        AuthCredential credential= EmailAuthProvider.getCredential(edtPEmail.getText().toString(),edtPPass.getText().toString());
+                        curUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    db.collection("Users").document(curUser.getUid()).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                curUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if(task.isSuccessful()){
+                                                            Intent intent=new Intent(SettingsActivity.this,MainActivity.class);
+                                                            startActivity(intent);
+                                                            popupWindow.dismiss();
+                                                        }else{
+                                                            Log.d("Dashboard Fragment","onComplete: UserDeleter"+task.getException().getMessage());
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    });
+
+                                }else {
+                                    Log.d("Setting Activity","onFailure: Authentication"+task.getException().getMessage());
+                                    edtPEmail.getText().clear();
+                                    edtPPass.getText().clear();
+                                    edtPEmail.setError("Please enter correct details");
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
+
+
     }
 
     private void updateLevel(View v) {

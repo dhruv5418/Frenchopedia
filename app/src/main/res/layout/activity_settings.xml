@@ -143,6 +143,21 @@
         android:layout_marginTop="8dp"
         android:text="FeedBack"
         android:textSize="20sp" />
+    <Button
+        android:id="@+id/btn_deleteProf"
+        android:layout_width="250dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_style"
+        android:text="Delete Account"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_feedBack"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_logOut"
@@ -157,7 +172,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_feedBack"
+        app:layout_constraintTop_toBottomOf="@+id/btn_deleteProf"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
