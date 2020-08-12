@@ -33,7 +33,6 @@ import java.util.ArrayList;
 public class QuizsupportActivity extends AppCompatActivity {
 
     String value;
-    PracticesupportAdapter practiceAdapter;
     DatabaseReference d;
     //ArrayList<Material> materials = new ArrayList<>();
     RecyclerView recyclerView;

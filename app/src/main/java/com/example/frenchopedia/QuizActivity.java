@@ -152,6 +152,11 @@ public class QuizActivity extends AppCompatActivity {
                     intent.putExtra("Title", "Months");
                     startActivity(intent);
                     break;
+                case "Colors":
+                    intent = new Intent(QuizActivity.this, Quizsupport2Activity.class);
+                    intent.putExtra("Title", "Colors");
+                    startActivity(intent);
+                    break;
             }
         }
     };
