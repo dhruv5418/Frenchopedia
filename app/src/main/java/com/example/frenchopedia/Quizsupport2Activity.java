@@ -64,7 +64,6 @@ public class Quizsupport2Activity extends AppCompatActivity {
                 title="Quiz2 Couleurs";
                 loadQuiz();
                 break;
-
         }
     }
 
@@ -86,7 +85,7 @@ public class Quizsupport2Activity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     final Question2 question2=dataSnapshot.getValue(Question2.class);
                     txt_q.setText(question2.getQuestion());
-                    Glide.with(getApplicationContext()).load(question2.url).into(imageView);
+                    Glide.with(Quizsupport2Activity.this).asBitmap().load(question2.url).into(imageView);
                     a_1.setText(question2.option1);
                     a_2.setText(question2.option2);
                     a_3.setText(question2.option3);

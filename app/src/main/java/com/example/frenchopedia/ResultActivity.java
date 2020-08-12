@@ -107,6 +107,9 @@ public class ResultActivity extends AppCompatActivity {
             case "Months":
                 ref="5";
                 break;
+            case "Colors":
+                ref="6";
+                break;
         }
     }
 
