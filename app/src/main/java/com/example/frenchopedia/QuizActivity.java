@@ -158,13 +158,14 @@ public class QuizActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case "Weather":
-                    intent = new Intent(QuizActivity.this, Quizsupport2Activity.class);
+                    intent = new Intent(QuizActivity.this, QuizsupportActivity.class);
                     intent.putExtra("Title", "Weather");
                     startActivity(intent);
                     break;
                 case "Days":
-                    intent = new Intent(QuizActivity.this, Quizsupport2Activity.class);
+                    intent = new Intent(QuizActivity.this, QuizsupportActivity.class);
                     intent.putExtra("Title", "Days");
+                    Toast.makeText(getApplicationContext(), "Days=" + title, Toast.LENGTH_LONG).show();
                     startActivity(intent);
                     break;
             }

@@ -90,10 +90,12 @@ public class QuizsupportActivity extends AppCompatActivity {
             case "Weather":
                 Log.d("MainFragment", "idmon=" + d);
                 title="Quiz5 Weather";
+                Toast.makeText(getApplicationContext(),"Weather Called",Toast.LENGTH_LONG).show();
                 loadQuiz();
                 break;
             case "Days":
                 Log.d("MainFragment", "idmon=" + d);
+                Toast.makeText(getApplicationContext(),"Days Called",Toast.LENGTH_LONG).show();
                 title="Quiz6 Days";
                 loadQuiz();
                 break;
