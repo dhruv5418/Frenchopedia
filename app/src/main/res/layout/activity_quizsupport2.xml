@@ -119,6 +119,13 @@
                     android:text="SUBMIT"
                     android:textColor="@color/White" />
             </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/orenge_button"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
