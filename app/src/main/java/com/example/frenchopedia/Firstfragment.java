@@ -35,7 +35,6 @@ public class Firstfragment extends Fragment {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
         auth=FirebaseAuth.getInstance();
     }
 
@@ -49,6 +48,7 @@ public class Firstfragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
         btn_getStarted=view.findViewById(R.id.btn_getStarted);
         btn_login=view.findViewById(R.id.btn_firstLogin);
         btn_getStarted.setOnClickListener(new View.OnClickListener() {

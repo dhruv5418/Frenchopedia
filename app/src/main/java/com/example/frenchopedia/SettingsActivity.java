@@ -255,14 +255,14 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(edtPEmail.getText().toString())){
-                    edtPEmail.setError("Email cannot be blank!");
+                if(TextUtils.isEmpty(edtNEmail.getText().toString())){
+                    edtNEmail.setError("Email cannot be blank!");
+                    edtNEmail.requestFocus();
+                }else if(TextUtils.isEmpty(edtPEmail.getText().toString())) {
+                    edtPEmail.setError("New Email cannot be blank!");
                     edtPEmail.requestFocus();
                 }else if(TextUtils.isEmpty(edtPPass.getText().toString())) {
                     edtPPass.setError("Password cannot be blank!");
-                    edtPPass.requestFocus();
-                }else if(TextUtils.isEmpty(edtNEmail.getText().toString())) {
-                    edtPPass.setError("New Email cannot be blank!");
                     edtPPass.requestFocus();
                 }else{
                     if(edtPPass.getText().toString().length()<6){

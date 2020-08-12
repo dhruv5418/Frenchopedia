@@ -22,11 +22,12 @@
         android:layout_height="116dp"
         android:id="@+id/image_p1"
         android:layout_marginTop="125dp"/>
-    <view
+    <View
         android:id="@+id/divider_pro"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_below="@+id/image_p1"
+        android:background="@color/orenge_button"
         android:layout_marginTop="20dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_Achievement"
